@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/topojson.v1.min.js"></script>
+  <!-- I recommend you host this file on your own, since this will change without warning -->
+  <script src="datamaps.min.js"></script>
+  <h1 style="font-family: 'Lobster', cursive; text-align: center;margin-top: 20px;">IoT Final Project</h1>
+  <div id="container1" style="position: relative; height: 100%;"></div>
+
+  
+
+  <script>
+   //basic map config with custom fills, mercator projection
+   var state_abbreviation = [
+      "AZ",
+      "CO",
+      "DE",
+      "FL",
+      "GA",
+      "HI",
+      "ID",
+      "IL",
+      "IN",
+      "IA",
+      "KS",
+      "KY",
+      "LA",
+      "MD",
+      "ME",
+      "MA",
+      "MN",
+      "MI",
+      "MS",
+      "MO",
+      "MT",
+      "NC",
+      "NE",
+      "NV",
+      "NH",
+      "NJ",
+      "NY",
+      "ND",
+      "NM",
+      "OH",
+      "OK",
+      "OR",
+      "PA",
+      "RI",
+      "SC",
+      "SD",
+      "TN",
+      "TX",
+      "UT",
+      "WI",
+      "VA",
+      "VT",
+      "WA",
+      "WV",
+      "WY",
+      "CA",
+      "CT",
+      "AK",
+      "AR",
+      "AL"
+      ];
+      
+   var election = new Datamap({
+    scope: 'usa',
+    element: document.getElementById('container1'),
+      geographyConfig: {
+        highlightBorderColor: '#bada55',
+        popupTemplate: function(geography, data) {
+          return '<div class="hoverinfo">' + geography.properties.name + 'Electoral Votes:' +  data.electoralVotes + ' '
+        },
+      highlightBorderWidth: 3
+    },
+
+      fills: {
+        'Republican': '#CC4731',
+        'Democrat': '#306596',
+        'Heavy Democrat': '#667FAF',
+        'Light Democrat': '#A9C0DE',
+        'Heavy Republican': '#CA5E5B',
+        'Light Republican': '#EAA9A8',
+        defaultFill: '#EDDC4E'
+      },
+       
+      data:{
+        "AZ": {
+
+          "City" : "Phoenix" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	   	     "URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/AZ/Phoenix.json"  
+        },
+        "CO": {
+
+          "City" : "Denver" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/CO/Denver.json"
+        },
+        "DE": {
+
+          "City" : "Dover" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" :"http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/DE/Dover.json"
+        },
+        "FL": {
+
+          "City" : "Tallahassee" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL":"http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/FL/Tallahassee.json"
+        },
+        "GA": {
+
+          "City" : "Atlanta" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/GA/Atlanta.json"
+        },
+        "HI": {
+
+          "City" : "Honolulu" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/HI/Honolulu.json"
+        },
+        "ID": {
+
+          "City" : "Boise" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/ID/Boise.json"
+        },
+        "IL": {
+
+          "City" : "Springfield" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/IL/Springfield.json"
+        },
+        "IN": {
+
+          "City" : "Indianapolis" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/IN/Indianapolis.json"
+        },
+        "IA": {
+
+          "City" : "Des Moines" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/IA/Des_Moines.json"
+        },
+        "KS": {
+
+          "City" : "Topeka" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/KS/Topeka.json"
+        },
+        "KY": {
+
+          "City" : "Frankfort" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/KY/Frankfort.json"
+        },
+        "LA": {
+
+          "City" : "Baton Rouge" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/LA/Baton_Rouge.json"
+        },
+        "MD": {
+
+          "City" : "Annapolis" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/MD/Annapolis.json"
+        },
+        "ME": {
+
+          "City" : "Augusta" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/ME/Augusta.json"
+        },
+        "MA": {
+
+          "City" : "Boston" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/MA/Boston.json"
+        },
+        "MN": {
+
+          "City" : "Saint Paul" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/MN/Saint_Paul.json"
+        },
+        "MI": {
+
+          "City" : "Lansing" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/MI/Lansing.json"
+        },
+        "MS": {
+
+          "City" : "Jackson" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/MS/Jackson.json"
+        },
+        "MO": {
+
+          "City" : "Jefferson City" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/MO/Jefferson_City.json"
+        },
+        "MT": {
+
+          "City" : "Helena" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/MT/Helena.json"
+        },
+        "NC": {
+
+          "City" : "Raleigh" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/NC/Raleigh.json"
+        },
+        "NE": {
+
+          "City" : "Lincoln" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/NE/Lincoln.json"
+        },
+        "NV": {
+
+          "City" : "Carson City" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/NV/Carson_City.json"
+        },
+        "NH": {
+
+          "City" : "Concord" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/NH/Concord.json"
+        },
+        "NJ": {
+
+          "City" : "Trenton" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/NJ/Trenton.json"
+        },
+        "NY": {
+
+          "City" : "Albany" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/NY/Albany.json"
+        },
+        "ND": {
+
+          "City" : "Bismarck" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/ND/Bismarck.json"
+        },
+        "NM": {
+
+          "City" : "Santa Fe" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/NM/Santa_Fe.json"
+        },
+        "OH": {
+
+          "City" : "Columbus" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/OH/Columbus.json"
+        },
+        "OK": {
+
+          "City" : "Oklahoma City" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/OK/Oklahoma_City.json"
+        },
+        "OR": {
+
+          "City" : "Salem" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/OR/Salem.json"
+        },
+        "PA": {
+
+          "City" : "Harrisburg" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/PA/Harrisburg.json"
+        },
+        "RI": {
+
+          "City" : "Providence" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/RI/Providence.json"
+        },
+        "SC": {
+
+          "City" : "Columbia" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/SC/Columbia.json"
+        },
+        "SD": {
+
+          "City" : "Pierre" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/SD/Pierre.json"
+        },
+        "TN": {
+
+          "City" : "Nashville" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/TN/Nashville.json"
+        },
+        "TX": {
+
+          "City" : "Austin" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/TX/Austin.json"
+        },
+        "UT": {
+
+          "City" : "Salt Lake City" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/UT/Salt_Lake_City.json"
+        },
+        "WI": {
+
+          "City" : "Madison" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/WI/Madison.json"
+        },
+        "VA": {
+
+          "City" : "Richmond" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/VA/Richmond.json"
+        },
+        "VT": {
+
+          "City" : "Montpelier" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/VT/Montpelier.json"
+        },
+        "WA": {
+
+          "City" : "Olympia" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/WA/Olympia.json"
+        },
+        "WV": {
+
+          "City" : "Charleston" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/WV/Charleston.json"
+        },
+        "WY": {
+
+          "City" : "Cheyenne" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/WY/Cheyenne.json"
+        },
+        "CA": {
+
+          "City" : "Sacramento" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/CA/Sacramento.json"
+        },
+        "CT": {
+
+          "City" : "Hartford" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" :"http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/CT/Hartford.json"
+        },
+        "AK": {
+
+          "City" : "Juneau" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/AK/Juneau.json "
+        },
+        "AR": {
+
+          "City" : "Little Rock" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/AR/Little_Rock.json"
+        },
+        "AL": {
+
+          "City" : "Montgomery" ,
+          "icon" : "" ,
+          "temp_c" : "" ,
+          "latitude" : "" ,
+          "longitude" : "" ,
+          
+	       	"URL" : "http://api.wunderground.com/api/7fc2816d0b2bff4e/conditions/q/AL/Montgomery.json"
+        }
+      }
+    });
+election.labels();
+</script>
+</body>
